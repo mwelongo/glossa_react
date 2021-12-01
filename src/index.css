@@ -41,7 +41,9 @@ code {
    margin-bottom: 10px;
    padding: 10px;
 }
-input[type="text"], input[type="number"], input[type="textarea"] {
+input[type="text"],
+input[type="number"],
+input[type="textarea"] {
    width: 100%;
    border: none;
 }
@@ -53,5 +55,26 @@ input[type="textarea"] {
    white-space: nowrap;
 }
 input[type="submit"] {
+   margin-top: 5px;
+}
+/* .create-form input[type="text"],
+.create-form input[type="number"],
+.create-form input[type="textarea"] {
+   width: 100%;
+   border: none;
+}
+.create-form input[type="textarea"] {
+   background: grey;
+   height: 75px;
+   resize: vertical;
+   overflow-x: auto;
+   white-space: nowrap;
+} */
+
+/* EDIT form  */
+.edit-form {
+   width: 92%;
+   margin: auto;
+   margin-bottom: 5px;
    margin-top: 5px;
 }

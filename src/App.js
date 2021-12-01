@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import Add from './components/AddLesson'
+import Edit from './components/EditLesson'
 
 const App = () => {
    let [lessons, setLessons] = useState([])
@@ -34,6 +35,15 @@ axios
   })
 }
 
+// Update route
+   const handleUpdate = (editLesson) => {
+      axios
+         .put('https://glossa-api.herokuapp.com/api/lessons/' + editLesson.id, editLesson)
+         .then((response) => {
+            getLessons()
+         })
+   }
+
    useEffect(() => {
       getLessons()
    },[])
@@ -56,7 +66,8 @@ axios
                      <h5>Topic: {module.lesson_subtitle}</h5>
                      <h6>Notes: {module.lesson_notes}</h6>
                      <img src={module.lesson_image}/>
-                     <button id="remove-btn" onClick={handleDelete} value={module.id}>Delete</button>
+                     <Edit handleUpdate={handleUpdate} id={module.id}/>
+                     <button id="delete-btn" onClick={handleDelete} value={module.id}>Delete</button>
                   </div>
                )
             })
