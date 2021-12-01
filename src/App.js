@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState, useEffect} from 'react'
+import axios from 'axios'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+   let [lessons, setLessons] = useState([])
+
+   const getLessons = () => {
+      axios
+         .get('https://glossa-api.herokuapp.com/api/lessons')
+         .then(
+            (response) => setLessons(response.data),
+            (err) => console.error(err)
+         )
+         .catch((error) => console.error(error))
+   }
+
+   useEffect(() => {
+      getLessons()
+   },[])
+
+
+   return (
+      <>
+         <h1>Welcome to Glossa</h1>
+      </>
+   )
 }
 
 export default App;
