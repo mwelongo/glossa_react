@@ -15,6 +15,7 @@ const App = () => {
          .catch((error) => console.error(error))
    }
 
+// Create lesson/module route
    const handleCreate = (newModule) => {
       axios
          .post('https://glossa-api.herokuapp.com/api/lessons', newModule)
@@ -23,6 +24,15 @@ const App = () => {
             getLessons()
          })
    }
+
+// Delete route
+const handleDelete = (event) => {
+axios
+  .delete('https://glossa-api.herokuapp.com/api/lessons/' + event.target.value)
+  .then((response) => {
+    getLessons()
+  })
+}
 
    useEffect(() => {
       getLessons()
@@ -41,6 +51,12 @@ const App = () => {
                      <h4>Instructor: {module.module_instructor}</h4>
                      <h4>Skills Outcomes: {module.module_objectives}</h4>
                      <h6>Module Description: {module.module_description}</h6>
+                     <h6>Lesson {module.lesson_num}</h6>
+                     <h6>Lesson: {module.lesson_title}</h6>
+                     <h5>Topic: {module.lesson_subtitle}</h5>
+                     <h6>Notes: {module.lesson_notes}</h6>
+                     <img src={module.lesson_image}/>
+                     <button id="remove-btn" onClick={handleDelete} value={module.id}>Delete</button>
                   </div>
                )
             })
