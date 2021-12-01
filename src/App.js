@@ -22,6 +22,20 @@ const App = () => {
    return (
       <>
          <h1>Welcome to Glossa</h1>
+         <div className="main-container">
+            {lessons.map((module) => {
+               return (
+                  <div className="module-wrap">
+                     <h2>Module: {module.module_title}</h2>
+                     <h4>Instructor: {module.module_instructor}</h4>
+                     <h4>Skills Outcomes: {module.module_objectives}</h4>
+                     <h6>Module Description: {module.module_description}</h6>
+                  </div>
+               )
+            })
+            }
+
+         </div>
       </>
    )
 }
