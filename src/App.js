@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
+import Add from './components/AddLesson'
 
 const App = () => {
    let [lessons, setLessons] = useState([])
@@ -14,6 +15,15 @@ const App = () => {
          .catch((error) => console.error(error))
    }
 
+   const handleCreate = (newModule) => {
+      axios
+         .post('https://glossa-api.herokuapp.com/api/lessons', newModule)
+         .then((response) => {
+            console.log(response)
+            getLessons()
+         })
+   }
+
    useEffect(() => {
       getLessons()
    },[])
@@ -22,6 +32,7 @@ const App = () => {
    return (
       <>
          <h1>Welcome to Glossa</h1>
+         <Add handleCreate={handleCreate}/>
          <div className="main-container">
             {lessons.map((module) => {
                return (
@@ -34,7 +45,6 @@ const App = () => {
                )
             })
             }
-
          </div>
       </>
    )
