@@ -13,7 +13,7 @@ Glossa App - a web app that users can use to create, edit, and teach courses onl
 * [Heroku Frontend](https://glossar.herokuapp.com/)
 * [Heroku Backend API](https://glossa-api.herokuapp.com/api/lessons)
 * [GitHub Frontend](https://github.com/mwelongo/glossa_react)
-* [Heroku Backend](https://github.com/mwelongo/glossa_api)
+* [GitHub Backend](https://github.com/mwelongo/glossa_api)
 
 ### Technologies Used
 * Backend: [Django](https://www.djangoproject.com/)

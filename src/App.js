@@ -62,7 +62,7 @@ axios
          <div class="flex flex-wrap justify-center items-center h-screen">
             {lessons.map((module) => {
                return (
-                  <div class="w-80 h-96 p-2.5 m-2 overflow-y-scroll border-2 border-blue-200 border-opacity-50 shadow-xl leading-loose rounded-2xl module-wrap">
+                  <div class="w-80 h-96 p-2 m-2 overflow-y-scroll border-2 border-blue-200 border-opacity-50 shadow-xl leading-loose rounded-2xl bg-red-100 module-wrap">
                      <div class="module-info p-1">
                         <h3 class="text-2xl font-bold">{module.module_title}</h3>
                         <img class="w-full h-36 flex m-auto rounded-xl" src={module.lesson_image}/>
