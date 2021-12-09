@@ -51,27 +51,32 @@ axios
 
    return (
       <>
-         <h1>Welcome to Glossa</h1>
+         <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-3">
+            <div class="flex items-center flex-shrink-0 text-red mr-6">
+               <a href="./index.html"><img src="https://i.imgur.com/Su0HY4u.png" class="h-20 w-48 mr-2"/></a>
+               <h1 class="font-semibold text-2xl tracking-tight">Welcome to Glossa Learning</h1>
+            </div>
+         </nav>
+
          <Add handleCreate={handleCreate}/>
-         <div class="main-container grid gap-2 grid-cols-4 flex-nowrap">
+         <div class="flex flex-wrap justify-center items-center h-screen">
             {lessons.map((module) => {
                return (
-                  <div class="module-wrap flex-1 w-80 h-96 p-2.5 overflow-y-scroll border-2 border-light-blue-200 border-opacity-50 shadow-lg ">
+                  <div class="w-80 h-96 p-2.5 m-2 overflow-y-scroll border-2 border-blue-200 border-opacity-50 shadow-xl leading-loose rounded-2xl module-wrap">
                      <div class="module-info p-1">
-                        <button id="delete-btn" onClick={handleDelete} value={module.id}>Delete</button>
                         <h3 class="text-2xl font-bold">{module.module_title}</h3>
-                        <img src={module.lesson_image}/>
-                        <h6 class="text-base">Instructor: {module.module_instructor}</h6>
-                        <h6 class="text-base">Learning Objectives: {module.module_objectives}</h6>
-                        <br/>
-                        <h6>Module Description: {module.module_description}</h6>
+                        <img class="w-full h-36 flex m-auto rounded-xl" src={module.lesson_image}/>
+                        <h6 class="text-sm">Instructor: {module.module_instructor}</h6>
+                        <h6 class="text-sm">Learning Objectives: {module.module_objectives}</h6>
+                        <h6 class="text-xs">Module Description: {module.module_description}</h6>
                      </div>
-                     <div class="lesson-info">
-                        <h4 class="text-xl font-bold">Lesson {module.lesson_num} - {module.lesson_title}</h4>
-                        <h5 class="text-xl">Topic: {module.lesson_subtitle}</h5>
+                     <div class="lesson-info bg-blue-200 p-4 my-2 rounded-lg">
+                        <h4 class="text-lg font-bold">Lesson {module.lesson_num} - {module.lesson_title}</h4>
+                        <h5 class="text-base">Topic: {module.lesson_subtitle}</h5>
                         <h5>Notes:</h5>
-                        <p>{module.lesson_notes}</p>
+                        <p class="text-xs">{module.lesson_notes}</p>
                      </div>
+                     <button class="bg-red-400 w-20 hover:bg-blue-700 text-white my-2 rounded px-2.5 flex m-auto" onClick={handleDelete} value={module.id}>Delete</button>
                      <Edit handleUpdate={handleUpdate} id={module.id}/>
                   </div>
                )
