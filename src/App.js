@@ -16,7 +16,7 @@ const App = () => {
          .catch((error) => console.error(error))
    }
 
-// Create lesson/module route
+// CREATE ROUTE (new module/lesson)
    const handleCreate = (newModule) => {
       axios
          .post('https://glossa-api.herokuapp.com/api/lessons', newModule)
@@ -26,7 +26,7 @@ const App = () => {
          })
    }
 
-// Delete route
+// DELETE ROUTE
 const handleDelete = (event) => {
 axios
   .delete('https://glossa-api.herokuapp.com/api/lessons/' + event.target.value)
@@ -35,7 +35,7 @@ axios
   })
 }
 
-// Update route
+// UPDATE/EDIT ROUTE
    const handleUpdate = (editLesson) => {
       axios
          .put('https://glossa-api.herokuapp.com/api/lessons/' + editLesson.id, editLesson)
@@ -53,21 +53,26 @@ axios
       <>
          <h1>Welcome to Glossa</h1>
          <Add handleCreate={handleCreate}/>
-         <div className="main-container">
+         <div class="main-container grid gap-2 grid-cols-4 flex-nowrap">
             {lessons.map((module) => {
                return (
-                  <div className="module-wrap">
-                     <h2>Module: {module.module_title}</h2>
-                     <h4>Instructor: {module.module_instructor}</h4>
-                     <h4>Skills Outcomes: {module.module_objectives}</h4>
-                     <h6>Module Description: {module.module_description}</h6>
-                     <h6>Lesson {module.lesson_num}</h6>
-                     <h6>Lesson: {module.lesson_title}</h6>
-                     <h5>Topic: {module.lesson_subtitle}</h5>
-                     <h6>Notes: {module.lesson_notes}</h6>
-                     <img src={module.lesson_image}/>
+                  <div class="module-wrap flex-1 w-80 h-96 p-2.5 overflow-y-scroll border-2 border-light-blue-200 border-opacity-50 shadow-lg ">
+                     <div class="module-info p-1">
+                        <button id="delete-btn" onClick={handleDelete} value={module.id}>Delete</button>
+                        <h3 class="text-2xl font-bold">{module.module_title}</h3>
+                        <img src={module.lesson_image}/>
+                        <h6 class="text-base">Instructor: {module.module_instructor}</h6>
+                        <h6 class="text-base">Learning Objectives: {module.module_objectives}</h6>
+                        <br/>
+                        <h6>Module Description: {module.module_description}</h6>
+                     </div>
+                     <div class="lesson-info">
+                        <h4 class="text-xl font-bold">Lesson {module.lesson_num} - {module.lesson_title}</h4>
+                        <h5 class="text-xl">Topic: {module.lesson_subtitle}</h5>
+                        <h5>Notes:</h5>
+                        <p>{module.lesson_notes}</p>
+                     </div>
                      <Edit handleUpdate={handleUpdate} id={module.id}/>
-                     <button id="delete-btn" onClick={handleDelete} value={module.id}>Delete</button>
                   </div>
                )
             })
